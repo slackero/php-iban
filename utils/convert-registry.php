@@ -3,7 +3,7 @@
 # this script converts the IBAN_registry.txt file's entries to registry.txt format (php-iban's required internal format).
 
 # init
-require_once(dirname(dirname(__FILE__)) . '/php-iban.php');
+require_once dirname(__DIR__) . '/php-iban.php';
 date_default_timezone_set('UTC'); # mutes a warning
 
 # read registry
