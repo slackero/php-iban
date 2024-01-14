@@ -159,11 +159,11 @@ foreach($_iban_registry as $country) {
    print "    (Correction of national checksum functionality validated.)\n";
   }
  }
- 
+
  # output all properties
  #$parts = iban_get_parts($iban);
  #print_r($parts);
- 
+
  # verify
  print "\nChecking validity... ";
  if(verify_iban($iban)) {
@@ -172,7 +172,7 @@ foreach($_iban_registry as $country) {
  else {
   print "ERROR: IBAN $iban is invalid.\n";
   $correct = iban_set_checksum($iban);
-  if($correct == $iban) { 
+  if($correct == $iban) {
    print "       (checksum is correct, structure must have issues.)\n";
    $machine_iban = iban_to_machine_format($iban);
    print "        (machine format is: '$machine_iban')\n";
@@ -197,5 +197,3 @@ foreach($_iban_registry as $country) {
 }
 
 exit($errors);
-
-?>

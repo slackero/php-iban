@@ -23,7 +23,7 @@ $test_data = array(
 $i=0;
 foreach($test_data as $this_test) {
  print " - verify_iban() test #$i... ";
- 
+
  if(verify_iban($this_test[0],$this_test[1]) !== $this_test[2]) {
   print "FAILED.\n";
   exit(1);
@@ -172,4 +172,3 @@ else {
 
 print "All tests passed.\n";
 exit(0);
-?>

@@ -160,7 +160,7 @@ foreach($countries as $countrycode) {
  # output all properties
  #$parts = $myIban->Parts();
  #print_r($parts);
- 
+
  # verify
  print "\nChecking validity... ";
  if($myIban->Verify()) {
@@ -195,4 +195,3 @@ foreach($countries as $countrycode) {
 
 exit($errors);
 
-?>

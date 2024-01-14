@@ -8,4 +8,3 @@ foreach($lines as $iban) {
  print iban_to_human_format($iban) . "\n";
  print iban_to_obfuscated_format($iban) . "\n";
 }
-?>
