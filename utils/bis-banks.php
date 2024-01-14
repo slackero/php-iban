@@ -1,4 +1,3 @@
-#!/usr/bin/php
 <?php
 
 $url = 'http://www.bis.org/cbanks.htm';
@@ -18,7 +17,5 @@ array_shift($matches);
 
 # display results
 for($i=0;$i<count($matches[0]);$i++) {
- print $matches[0][$i] . "|" . $matches[1][$i] . "|" . $matches[2][$i] . "|" . $matches[3][$i] . "\n";
+ print $matches[0][$i] . '|' . $matches[1][$i] . '|' . $matches[2][$i] . '|' . $matches[3][$i] . "\n";
 }
-
-?>

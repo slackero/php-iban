@@ -3,7 +3,7 @@
 # this script converts the IBAN_registry.txt file's entries to registry.txt format (php-iban's required internal format).
 
 # init
-require_once(dirname(dirname(__FILE__)) . '/php-iban.php');
+require_once dirname(__DIR__) . '/php-iban.php';
 date_default_timezone_set('UTC'); # mutes a warning
 
 # read registry
@@ -103,7 +103,7 @@ foreach($lines as $line) {
   # calculate numeric $iban_length
   $iban_length = preg_replace('/[^\d]/','',$iban_length);
   # calculate bban_bankid_<start|stop>_offset
-  # .... First we have to parse the freetext $bban_bi_position, eg: 
+  # .... First we have to parse the freetext $bban_bi_position, eg:
   # Bank Identifier 1-3, Branch Identifier
   # Position 1-2
   # Positions 1-2
@@ -270,7 +270,7 @@ function swift_to_regex($swift) {
   # calculate replacement
   $replacement = '(TOKEN)';
   # type 'n'
-  if($matches[3][$i] == 'n') { 
+  if($matches[3][$i] == 'n') {
    $replacement = '(\d{length})';
   }
   # type 'c'
@@ -315,5 +315,3 @@ function swift_tokenize($string,$calculate_offsets=0) {
  }
  return $matches;
 }
-
-?>
