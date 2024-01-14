@@ -4,12 +4,11 @@ namespace PHP_IBAN;
 # OO wrapper for 'php-iban.php'
 class IBAN
 {
-
     public $iban;
 
     public function __construct($iban = '')
     {
-        require_once('php-iban.php'); # load the procedural codebase
+        require_once __DIR__ . '/php-iban.php'; # load the procedural codebase
         $this->iban = $iban;
     }
 

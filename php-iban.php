@@ -1,9 +1,21 @@
 <?php
 
-# PHP IBAN - http://github.com/globalcitizen/php-iban - LGPLv3
+/**
+ * PHP IBAN - http://github.com/globalcitizen/php-iban - LGPLv3
+ */
 
-# Global flag by request
+// Global flag by request
 $__disable_iiban_gmp_extension = false;
+
+// Load the IBAN registry from disk.
+global $_iban_registry;
+$_iban_registry = [];
+require_once __DIR__ . '/php-iban_registry.php';
+
+// Throw an exception if the php-iban registry cannot be loaded or is empty
+if (empty($_iban_registry)) {
+    throw new ErrorException('The PHP-IBAN registry cannot be loaded.');
+}
 
 # Verify an IBAN number.
 #  If $machine_format_only, do not tolerate unclean (eg. spaces, dashes, leading 'IBAN ' or 'IIBAN ', lower case) input.
@@ -456,7 +468,6 @@ function iban_country_get_central_bank_name($iban_country)
 # Get the list of all IBAN countries
 function iban_countries()
 {
-    _iban_load_registry();
     global $_iban_registry;
     return array_keys($_iban_registry);
 }
@@ -574,68 +585,6 @@ function iban_mistranscription_suggestions($incorrect_iban)
 
 ##### internal use functions - safe to ignore ######
 
-# Load the IBAN registry from disk.
-global $_iban_registry;
-$_iban_registry = [];
-function _iban_load_registry()
-{
-    global $_iban_registry;
-    # if the registry is not yet loaded, or has been corrupted, reload
-    if (!is_array($_iban_registry) || count($_iban_registry) < 1) {
-        $data = file_get_contents(dirname(__FILE__) . '/registry.txt');
-        $lines = explode("\n", $data);
-        array_shift($lines); # drop leading description line
-        # loop through lines
-        foreach ($lines as $line) {
-            if ($line != '') {
-                # avoid spewing tonnes of PHP warnings under bad PHP configs - see issue #69
-                if (function_exists('ini_set')) {
-                    # split to fields
-                    $old_display_errors_value = ini_get('display_errors');
-                    ini_set('display_errors', false);
-                    $old_error_reporting_value = ini_get('error_reporting');
-                    ini_set('error_reporting', false);
-                }
-                list($country, $country_name, $domestic_example, $bban_example, $bban_format_swift, $bban_format_regex, $bban_length, $iban_example, $iban_format_swift, $iban_format_regex, $iban_length, $bban_bankid_start_offset, $bban_bankid_stop_offset, $bban_branchid_start_offset, $bban_branchid_stop_offset, $registry_edition, $country_sepa, $country_swift_official, $bban_checksum_start_offset, $bban_checksum_stop_offset, $country_iana, $country_iso3166, $parent_registrar, $currency_iso4217, $central_bank_url, $central_bank_name, $membership) = explode('|', $line);
-                # avoid spewing tonnes of PHP warnings under bad PHP configs - see issue #69
-                if (isset($old_display_errors_value) && isset($old_error_reporting_value)) {
-                    ini_set('display_errors', $old_display_errors_value);
-                    ini_set('error_reporting', $old_error_reporting_value);
-                }
-                # assign to registry
-                $_iban_registry[$country] = [
-                    'country' => $country,
-                    'country_name' => $country_name,
-                    'country_sepa' => $country_sepa,
-                    'domestic_example' => $domestic_example,
-                    'bban_example' => $bban_example,
-                    'bban_format_swift' => $bban_format_swift,
-                    'bban_format_regex' => $bban_format_regex,
-                    'bban_length' => $bban_length,
-                    'iban_example' => $iban_example,
-                    'iban_format_swift' => $iban_format_swift,
-                    'iban_format_regex' => $iban_format_regex,
-                    'iban_length' => $iban_length,
-                    'bban_bankid_start_offset' => $bban_bankid_start_offset,
-                    'bban_bankid_stop_offset' => $bban_bankid_stop_offset,
-                    'bban_branchid_start_offset' => $bban_branchid_start_offset,
-                    'bban_branchid_stop_offset' => $bban_branchid_stop_offset,
-                    'registry_edition' => $registry_edition,
-                    'country_swift_official' => $country_swift_official,
-                    'bban_checksum_start_offset' => $bban_checksum_start_offset,
-                    'bban_checksum_stop_offset' => $bban_checksum_stop_offset,
-                    'country_iana' => $country_iana,
-                    'country_iso3166' => $country_iso3166,
-                    'parent_registrar' => $parent_registrar,
-                    'currency_iso4217' => $currency_iso4217,
-                    'central_bank_url' => $central_bank_url,
-                    'central_bank_name' => $central_bank_name,
-                    'membership' => $membership
-                ];
-            }
-        }
-    }
-}
 
 # Get information from the IBAN registry by example IBAN / code combination
 function _iban_get_info($iban, $code)
@@ -647,7 +596,6 @@ function _iban_get_info($iban, $code)
 # Get information from the IBAN registry by country / code combination
 function _iban_country_get_info($country, $code)
 {
-    _iban_load_registry();
     global $_iban_registry;
     $country = strtoupper($country);
     $code = strtolower($code);
