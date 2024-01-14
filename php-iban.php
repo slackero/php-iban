@@ -12,9 +12,15 @@ global $_iban_registry;
 $_iban_registry = [];
 require_once __DIR__ . '/php-iban_registry.php';
 
+global $_iban_mistranscriptions;
+$_iban_mistranscriptions = [];
+require_once __DIR__ . '/php-iban_mistranscriptions.php';
+
 // Throw an exception if the php-iban registry cannot be loaded or is empty
 if (empty($_iban_registry)) {
     throw new ErrorException('The PHP-IBAN registry cannot be loaded.');
+} elseif (empty($_iban_mistranscriptions)) {
+    throw new ErrorException('The PHP-IBAN mistranscription cannot be loaded.');
 }
 
 # Verify an IBAN number.
@@ -507,7 +513,6 @@ function iban_country_get_is_eu_member($iban_country)
 #   - norway NO gets dropped due to mis-identification with "No." for number (ie. if no country code try prepending NO)
 function iban_mistranscription_suggestions($incorrect_iban)
 {
-
     # remove funky characters
     $incorrect_iban = iban_to_machine_format($incorrect_iban);
 
@@ -515,11 +520,6 @@ function iban_mistranscription_suggestions($incorrect_iban)
     $length = strlen($incorrect_iban);
     if ($length < 5 || $length > 34) {
         return ['(supplied iban length insane)'];
-    }
-
-    # abort if mistranscriptions data is unable to load
-    if (!_iban_load_mistranscriptions()) {
-        return ['(failed to load mistranscriptions)'];
     }
 
     # init
@@ -582,9 +582,7 @@ function iban_mistranscription_suggestions($incorrect_iban)
     return $suggestions;
 }
 
-
 ##### internal use functions - safe to ignore ######
-
 
 # Get information from the IBAN registry by example IBAN / code combination
 function _iban_get_info($iban, $code)
@@ -605,35 +603,6 @@ function _iban_country_get_info($country, $code)
         }
     }
     return false;
-}
-
-# Load common mistranscriptions from disk.
-function _iban_load_mistranscriptions()
-{
-    global $_iban_mistranscriptions;
-    # do not reload if already present
-    if (is_array($_iban_mistranscriptions) && count($_iban_mistranscriptions) == 36) {
-        return true;
-    }
-    $_iban_mistranscriptions = [];
-    $file = dirname(__FILE__) . '/mistranscriptions.txt';
-    if (!file_exists($file) || !is_readable($file)) {
-        return false;
-    }
-    $data = file_get_contents($file);
-    $lines = explode("\n", $data);
-    foreach ($lines as $line) {
-        # match lines with ' c-<x> = <something>' where x is a word-like character
-        if (preg_match('/^ *c-(\w) = (.*?)$/', $line, $matches)) {
-            # normalize the character to upper case
-            $character = strtoupper($matches[1]);
-            # break the possible origins list at '/', strip quotes & spaces
-            $chars = explode(' ', str_replace('"', '', preg_replace('/ *?\/ *?/', '', $matches[2])));
-            # assign as possible mistranscriptions for that character
-            $_iban_mistranscriptions[$character] = $chars;
-        }
-    }
-    return true;
 }
 
 # Find the correct national checksum for an IBAN
