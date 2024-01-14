@@ -815,7 +815,7 @@ $_iban_registry = [
         'currency_iso4217' => 'DKK',
         'central_bank_url' => 'www.nationalbanken.dk',
         'central_bank_name' => 'National Bank of Denmark (Danmarks Nationalbank)',
-        'membership' => '',
+        'membership' => 'eu_member',
     ],
     'FO' => [
         'country' => 'FO',
