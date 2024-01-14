@@ -1,19 +1,36 @@
 {
-  "name": "slackero/php-iban",
-  "description": "php-iban is a library for parsing and validating IBAN (and IIBAN) bank account information.",
-  "license": "LGPL-3.0-only",
-  "require": {
-    "php": "^7.4 || ^8.0 || ^8.1 || ^8.2 || ^8.3"
-  },
-  "autoload": {
-    "files": [
-      "oophp-iban.php",
-      "php-iban.php",
-      "php-iban_registry.php",
-      "php-iban_mistranscriptions.php"
-    ]
-  },
-  "suggest": {
-    "ext-gmp": "For faster IBAN validation"
-  }
+    "name": "slackero/php-iban",
+    "description": "php-iban is a library for parsing and validating IBAN (and IIBAN) bank account information.",
+    "license": "LGPL-3.0-only",
+    "authors": [
+        {
+            "name": "Walter Stanish",
+            "email": "walter.stanish@gmail.com",
+            "homepage": "https://github.com/globalcitizen",
+            "role": "Developer"
+        },
+        {
+            "name": "Oliver Georgi",
+            "email": "slackero@gmail.com",
+            "homepage": "https://github.com/slackero",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/slackero/php-iban/issues"
+    },
+    "require": {
+        "php": "^7.4 || ^8.0 || ^8.1 || ^8.2 || ^8.3"
+    },
+    "autoload": {
+        "files": [
+            "oophp-iban.php",
+            "php-iban.php",
+            "php-iban_registry.php",
+            "php-iban_mistranscriptions.php"
+        ]
+    },
+    "suggest": {
+        "ext-gmp": "For faster IBAN validation"
+    }
 }

@@ -3,12 +3,13 @@ php-iban
 
 `php-iban` is a library for parsing, validating and generating IBAN (and IIBAN) bank account information in PHP.
 
-[![Latest Stable Version](https://poser.pugx.org/globalcitizen/php-iban/v/stable)](https://packagist.org/packages/globalcitizen/php-iban) 
-[![License](https://poser.pugx.org/globalcitizen/php-iban/license)](https://packagist.org/packages/globalcitizen/php-iban)
+This is a fork of the original [**globalcitizen/php-iban**](https://github.com/globalcitizen/php-iban/). Instead of 
+parsing the IBAN registry from a CSV file on each load it uses a PHP file that is generated from the CSV file.
+In addition support for PHP <7.4 was removed and the code was cleaned up a bit.
 
 All parts of an IBAN can be retrieved, including country code, checksum, BBAN, financial institution or bank code, account number, and where a fixed-length national system is in use, also branch/sort code. Legacy national checksums may also be retrieved, validated and correctly set, where available, whether they apply to the account number portion, bank and branch identifiers, part or all of the above. IBAN country codes can be converted in to ISO3166-1 alpha-2 and IANA formats, the parent IBAN country acting as registrar for dependent territories may be queried, the official national currency (ISO4217 alpha code format), central bank name and central bank URL may also be queried to ease integration. IBANs may be converted between human and machine representation. IBANs may be obfuscated for presentation to humans in special circumstances such as relative identification. A database of example/test IBANs from different countries is included. Finally, highly accurate suggestions for originally intended input can be made when an incorrect IBAN is detected and is due to mistranscription error.
 
-The parser was built using regular expressions to adapt the contents of the _official_ IBAN registry available from SWIFT then manually modified for special cases such as [errors and omissions in SWIFT's official specifications](https://raw.githubusercontent.com/globalcitizen/php-iban/master/docs/COMEDY-OF-ERRORS).
+The parser was built using regular expressions to adapt the contents of the _official_ IBAN registry available from SWIFT then manually modified for special cases such as [errors and omissions in SWIFT's official specifications](https://raw.githubusercontent.com/slackero/php-iban/master/docs/COMEDY-OF-ERRORS).
 
 Various deficiencies in the initial adaptation have since been rectified, and the current version should be a fairly correct and reliable implementation.
 
@@ -16,78 +17,82 @@ Where appropriate, __European Committee for Banking Standards__ (ECBS) recommend
 
 Please bear in mind that because the specification changes frequently, it may not be 100% up to date if a new version has been recently released - I do my best though. We are currently thought to be up to date with [the January 2020 release, ie. PDF release #86](https://www.swift.com/standards/data-standards/iban).
 
+
+License
+-------
+
 Licensed under LGPL, it is free to use in commercial settings.
 
 
 Countries Supported
 -------------------
 
-The following 116 official and *unofficial* IBAN countries are supported.
+The following 116 official and _unofficial_ IBAN countries are supported.
 
 * Albania (AL)
-* *Algeria* (DZ)
+* _Algeria_ (DZ)
 * Andorra (AD)
-* *Angola* (AO)
+* _Angola_ (AO)
 * Austria (AT)
 * Azerbaijan (AZ)
 * Bahrain (BH)
 * Belarus (BY)
 * Belgium (BE)
-* *Benin* (BJ)
+* _Benin_ (BJ)
 * Bosnia and Herzegovina (BA)
 * Brazil (BR)
 * British Virgin Islands (VG)
 * Bulgaria (BG)
-* *Burkina Faso* (BF)
-* *Burundi* (BI)
-* *Cameroon* (CM)
-* *Central African Republic* (CF)
-* *Chad* (TD)
-* *Cape Verde* (CV)
-* *Comoros* (KM)
-* *Congo* (CG)
+* _Burkina Faso_ (BF)
+* _Burundi_ (BI)
+* _Cameroon_ (CM)
+* _Central African Republic_ (CF)
+* _Chad_ (TD)
+* _Cape Verde_ (CV)
+* _Comoros_ (KM)
+* _Congo_ (CG)
 * Costa Rica (CR)
-* *Côte d'Ivoire* (CI)
+* _Côte d'Ivoire_ (CI)
 * Croatia (HR)
 * Cyprus (CY)
 * Czech Republic (CZ)
 * Denmark (DK)
- * Faroe Islands (FO)
- * Greenland (GL)
-* *Djibouti* (DJ)
+  * Faroe Islands (FO)
+  * Greenland (GL)
+* _Djibouti_ (DJ)
 * Dominican Republic (DO)
 * East Timor (TL)
-* *Egypt* (EG)
+* _Egypt_ (EG)
 * El Salvador (SV)
-* *Equitorial Guinea* (GQ)
+* _Equitorial Guinea_ (GQ)
 * Estonia (EE)
 * Finland (FI)
- * Åland Islands (AX)
+  * Åland Islands (AX)
 * France (FR)
- * French Guiana (GF)
- * French Polynesia (PF)
- * French Southern Territories (TF)
- * Guadelope (GP)
- * Martinique (MQ)
- * Mayotte (YT)
- * New Caledonia (NC)
- * Réunion (RE)
- * Saint Barhélemy (BL)
- * Saint Martin (French Part) (MF)
- * Saint-Pierre and Miquelon (PM)
- * Wallis and Futuna (WF)
-* *Gabon* (GA)
+  * French Guiana (GF)
+  * French Polynesia (PF)
+  * French Southern Territories (TF)
+  * Guadelope (GP)
+  * Martinique (MQ)
+  * Mayotte (YT)
+  * New Caledonia (NC)
+  * Réunion (RE)
+  * Saint Barhélemy (BL)
+  * Saint Martin (French Part) (MF)
+  * Saint-Pierre and Miquelon (PM)
+  * Wallis and Futuna (WF)
+* _Gabon_ (GA)
 * Georgia (GE)
 * Germany (DE)
 * Gibraltar (GI)
 * Greece (GR)
 * Guatemala (GT)
-* *Guinea-Bissau* (GW)
-* *Honduras* (HN)
+* _Guinea-Bissau_ (GW)
+* _Honduras_ (HN)
 * Hungary (HU)
 * Iceland (IS)
-* *IIBAN (Internet)* (AA)
-* *Iran* (IR)
+* _IIBAN (Internet)_ (AA)
+* _Iran_ (IR)
 * Iraq (IQ)
 * Ireland (IE)
 * Israel (IL)
@@ -102,19 +107,19 @@ The following 116 official and *unofficial* IBAN countries are supported.
 * Lithuania (LT)
 * Luxembourg (LU)
 * Macedonia (MK)
-* *Madagascar* (MG)
-* *Mali* (ML)
+* _Madagascar_ (MG)
+* _Mali_ (ML)
 * Malta (MT)
 * Mauritania (MR)
 * Mauritius (MU)
 * Moldova (MD)
 * Monaco (MC)
 * Montenegro (ME)
-* *Morocco* (MA)
-* *Mozambique* (MZ)
+* _Morocco_ (MA)
+* _Mozambique_ (MZ)
 * Netherlands (NL)
-* *Nicaragua* (NI)
-* *Niger* (NE)
+* _Nicaragua_ (NI)
+* _Niger_ (NE)
 * Norway (NO)
 * Pakistan (PK)
 * Palestine (PS)
@@ -126,7 +131,7 @@ The following 116 official and *unofficial* IBAN countries are supported.
 * San Marino (SM)
 * São Tomé and Príncipe (ST)
 * Saudi Arabia (SA)
-* *Senegal* (SN)
+* _Senegal_ (SN)
 * Serbia (RS)
 * Seychelles (SC)
 * Slovakia (SK)
@@ -134,10 +139,10 @@ The following 116 official and *unofficial* IBAN countries are supported.
 * Spain (ES)
 * Sweden (SE)
 * Switzerland (CH)
-* *Togo* (TG)
+* _Togo_ (TG)
 * Tunisia (TN)
 * Turkey (TR)
-* *Ukraine* (UA)
+* _Ukraine_ (UA)
 * United Arab Emirates (AE)
 * United Kingdom (GB)
 
@@ -145,13 +150,14 @@ The following 116 official and *unofficial* IBAN countries are supported.
 Installation via composer
 -------------------------
 
-If you use [composer](https://getcomposer.org/) you can simply run `composer require globalcitizen/php-iban` to get going. Reportedly [![Daily Downloads](https://poser.pugx.org/globalcitizen/php-iban/d/daily)](https://packagist.org/packages/globalcitizen/php-iban) (and [![Monthly Downloads](https://poser.pugx.org/globalcitizen/php-iban/d/monthly)](https://packagist.org/packages/globalcitizen/php-iban)) were done via composer.
+If you use [composer](https://getcomposer.org/) you can simply run `composer require globalcitizen/php-iban` to get going.
 
-(If you don't yet have `composer` and wish to install it in an insecure fashion (not recommended, but convenient) you can run `curl -sS https://getcomposer.org/installer | php` or `wget -O- https://getcomposer.org/installer | php`)
+(If you don't yet have `composer` and wish to install it in an insecure fashion (not recommended, but convenient) 
+you can run `curl -sS https://getcomposer.org/installer | php` or `wget -O- https://getcomposer.org/installer | php`)
 
 Then just add the following to your `composer.json` file:
 
-```js
+```
 // composer.json
 {
     "require": {
@@ -160,21 +166,22 @@ Then just add the following to your `composer.json` file:
 }
 ```
 
-Then, you can install the new dependencies by running `composer`'s update command from the directory where your `composer.json` file is located:
+Then, you can install the new dependencies by running `composer`'s update command 
+from the directory where your `composer.json` file is located:
 
 ```sh
 # install
 $ php composer.phar install
 # update
-$ php composer.phar update globalcitizen/php-iban
+$ php composer.phar update slackero/php-iban
 
 # or you can simply execute composer command if you set it to
 # your PATH environment variable
 $ composer install
-$ composer update globalcitizen/php-iban
+$ composer update slackero/php-iban
 ```
 
-You can [see this library on Packagist](https://packagist.org/packages/globalcitizen/php-iban).
+You can [see this library on Packagist](https://packagist.org/packages/slackero/php-iban).
 
 
 Installation via git
@@ -184,9 +191,9 @@ For a regular install, use the `git clone` command:
 
 ```sh
 # HTTP
-$ git clone https://github.com/globalcitizen/php-iban.git
+$ git clone https://github.com/slackero/php-iban.git
 # SSH
-$ git clone git@github.com:globalcitizen/php-iban.git
+$ git clone git@github.com:slackero/php-iban.git
 ```
 
 
@@ -200,7 +207,7 @@ $ cd my-existing-project-with-a-git-repo/
 # select an appropriate place to create the php-iban subdir
 $ cd lib/
 # add php-iban as a submodule
-$ git submodule add https://github.com/globalcitizen/php-iban.git
+$ git submodule add https://github.com/slackero/php-iban.git
 # commit new submodule
 $ git commit -m 'Add php-iban submodule'
 ```
@@ -233,14 +240,13 @@ $ git commit -m 'Update php-iban submodule'
 Manual installation
 -------------------
 
-1. Fetch the latest release from [our github releases page](https://github.com/globalcitizen/php-iban/releases) in either `zip` or `tar.gz` format.
+1. Fetch the latest release from [our github releases page](https://github.com/slackero/php-iban/releases) in either `zip` or `tar.gz` format.
 2. Extract the library using your favourite archive utility, for example `unzip filename.zip` on Unix-like platforms.
-3. Write your code to depend on the library based upon its relative location to your source code. For example if you wish to include `php-iban` from the parent directory's subdirectory `libraries/php-iban` you could use the following [require_once()](http://php.net/manual/en/function.require-once.php) statement:
+3. Write your code to depend on the library based upon its relative location to your source code. For example if you wish to include `php-iban` from the parent directory's subdirectory `libraries/php-iban` you could use the following [`require_once`](http://php.net/manual/en/function.require-once.php) statement:
 ```php
 <?php
-require_once(dirname(__FILE__) . '/../libraries/php-iban/php-iban.php');
-# ... your code utilizing php-iban
-?>
+require_once dirname(__DIR__) . '/libraries/php-iban/php-iban.php';
+// ... your code utilizing php-iban
 ```
 
 
@@ -251,7 +257,7 @@ The following table compares __php-iban__ to other PHP projects offering IBAN-re
 
 | Project                                                    | Lic. | Proc | OO  | Began  | Latest | Star | Watch | Fork | Installs | Home culture | Deps    |
 | ---------------------------------------------------------- | ---- | ---- | --- | ------ | ------ | ---- | ----- | ---- | -------- | ------------ | ------- |
-| __php-iban__                                               | LGPL | ✔    | ✔   | 2009   | 4.2.1  | 426  | 29    | 104  | ~5.5M+*  | Global*      | *none*  |
+| __php-iban__                                               | LGPL | ✔    | ✔   | 2009   | 4.2.1  | 426  | 29    | 104  | ~5.5M+*  | Global*      | _none_  |
 | [Iban](https://github.com/jschaedl/Iban)                   | MIT  | ✘    | ✔   | 2013   | 1.3.0  | 50   | 9     | 19   | 178.39k  | German       | lots    |
 | [IsoCodes](https://github.com/ronanguilloux/IsoCodes)      | GPL3 | ✘    | ✔   | 2012   | 2.1.1  | 466  | 22    | 54   | 145k     | French       | lots    |
 | [SepaUtil's](https://github.com/AbcAeffchen/SepaUtilities) | GPL3 | ✘    | ✔   | 2014   | 1.2.3  | 8    | 4     | 3    | 25k      | German       | phpunit |
@@ -285,7 +291,7 @@ Now let's take a look at features.
 
 |                                                               | +   | ISO | IANA | SEPA | ₶   | UO  | MT  | NC  | ₴   | CB  | H?  | Registry                                                               |
 | ------------------------------------------------------------- | --- | --- | ---- | ---- | --- | --- | --- | --- | --- | --- | --- | ---------------------------------------------------------------------- |
-| __php-iban__                                                  | ✔   | ✔   |  ✔   | ✔    | ✔   | ✔   | ✔   | ✔   | ✔   | ✔   | ✔   | 116: [full, error-corrected CSV](https://github.com/globalcitizen/php-iban/blob/master/registry.txt) with [open-source toolchain](https://github.com/globalcitizen/php-iban/blob/master/utils/convert-registry.php) and [documentation](https://github.com/globalcitizen/php-iban/blob/master/docs/COMEDY-OF-ERRORS) |
+| __php-iban__                                                  | ✔   | ✔   |  ✔   | ✔    | ✔   | ✔   | ✔   | ✔   | ✔   | ✔   | ✔   | 116: [full, error-corrected CSV](https://github.com/slackero/php-iban/blob/master/registry.txt) with [open-source toolchain](https://github.com/slackero/php-iban/blob/master/utils/convert-registry.php) and [documentation](https://github.com/slackero/php-iban/blob/master/docs/COMEDY-OF-ERRORS) |
 | [Iban](https://github.com/jschaedl/Iban)                      | ✔*  | ✘   |  ✘   | ✘    | ✘   | ✘   | ✘   | ✘   | ✘   | ✘   | ✘   | 54: [partial, hardcoded, dubious origin](https://github.com/jschaedl/Iban/blob/master/library/IBAN/Core/Constants.php#L44)   |
 | [IsoCodes](https://github.com/ronanguilloux/IsoCodes)         | ✘   | ✘   |  ✘   | ✘    | ✘   | ✘   | ✘   | ✘   | ✘   | ✘   | ✘   | 66: [partial, hardcoded, dubious origin](https://github.com/ronanguilloux/IsoCodes/blob/master/src/IsoCodes/Iban.php#L25)    |
 | [SepaUtil's](https://github.com/AbcAeffchen/SepaUtilities)    | ✘   | ✘   |  ✘   | ✘    | ✘   | ✘   | ✘   | ✘   | ✘   | ✘   | ✘   | 89: [partial, hardcoded, dubious origin](https://github.com/AbcAeffchen/SepaUtilities/blob/master/src/SepaUtilities.php#L89) |
@@ -312,12 +318,23 @@ So, fearless user ... __choose php-iban__: the ethical, functional, forward-look
 Your Help Wanted
 ----------------
 
- * If you know the URL of __national IBAN, BBAN or national checksum documentation__ from official sources, please let us know at [issue #39](https://github.com/globalcitizen/php-iban/issues/39) and [issue #41](https://github.com/globalcitizen/php-iban/issues/41).
+ * If you know the URL of __national IBAN, BBAN or national checksum documentation__ from official sources, please let us know at [issue #39](https://github.com/slackero/php-iban/issues/39) and [issue #41](https://github.com/slackero/php-iban/issues/41).
   * __Faroe Islands__ (FO) banks do not respond, neither does the Danish National Bank who referred me to them.
   * __Luxembourg__ (LU) does not seem to conform to any single checksum system. While some IBAN do validate with reasonably common systems, others don't or use others. The suggestion that Luxembourg has a national checksum system may in fact be incorrect. We need some clarification here, hopefully someone can dig up an official statement.
   * __Mauritania__ (MR) has a dual character checksum system but our example IBAN does not match MOD97-10 which would be the expected system. Previously the IBAN here was always fixed to '13' checksum digits, however as of registry v66 it is now dynamic, which suggests a changed or at least now nationally relaxed checksum system.
 
  * If you are willing to spend some time searching, we could do with some more test IBANs for most countries, especially smaller ones...
+
+
+News: January 2024
+-----------------
+
+__[Version 5.0.0](https://github.com/slackero/php-iban/releases/tag/v5.0.0)__ has been released.
+* Created fork [slackero/php-iban](https://github.com/slackero/php-iban) of [globalcitizen/php-iban](https://github.com/globalcitizen/php-iban).
+* Cleanup and partially refactored the php-iban library
+* Do not parse the registry.txt[registry.txt](config/Fregistry.txt) and [mistranscriptions.txt](config/mistranscriptions.txt) on each load
+* Added support for PHP 8.2 and 8.3
+* Removed support for PHP < 7.4
 
 News: August 2023
 -----------------
@@ -762,7 +779,7 @@ __[Version 2.0.1](https://github.com/globalcitizen/php-iban/releases/tag/v2.0.1)
  * Timor Leste (TL)
  * Turkey (TR)
 
-__[Version 1.6.0](https://github.com/globalcitizen/php-iban/releases/tag/v1.6.0)__ has been released. This version features more registry corrections (newly added territories with faulty data, bad checksums in sample IBANs, etc.) as well as enhanced testing routines, extended documentation, and corrected documentation. All users are advised to upgrade. We now have automated test script execution with Travis CI, to provide additional robustness for all committed code. This took longer than expected as unfortunately I picked the exact time Travis broke their build logs - https://www.traviscistatus.com/incidents/fcllblkclgmb - to see what all the fuss was about... proving again that cloud computing is just *great* for breaking things unexpectedly. Because they want to hide things, there was literally no debug output whatsoever, and I was led to believe this was my fault. Fellow programmers, behold: it is the dawning of the age of the mystical fail.
+__[Version 1.6.0](https://github.com/globalcitizen/php-iban/releases/tag/v1.6.0)__ has been released. This version features more registry corrections (newly added territories with faulty data, bad checksums in sample IBANs, etc.) as well as enhanced testing routines, extended documentation, and corrected documentation. All users are advised to upgrade. We now have automated test script execution with Travis CI, to provide additional robustness for all committed code. This took longer than expected as unfortunately I picked the exact time Travis broke their build logs - https://www.traviscistatus.com/incidents/fcllblkclgmb - to see what all the fuss was about... proving again that cloud computing is just _great_ for breaking things unexpectedly. Because they want to hide things, there was literally no debug output whatsoever, and I was led to believe this was my fault. Fellow programmers, behold: it is the dawning of the age of the mystical fail.
 
 __[Version 1.5.0](https://github.com/globalcitizen/php-iban/releases/tag/v1.5.0)__ has been released. There are no code changes, but we now have http://packagist.org/ integration, hopefully this triggers it to start working. If you use packagist, you can now add the library to your project by just running `composer require globalcitizen/php-iban` (thanks to @acoulton for pointing the way)
 
@@ -992,68 +1009,68 @@ Documentation (Procedural/Recommended)
 
 ```php
 require_once('php-iban.php');
-# ... your code utilising IBAN functions...
+// ... your code utilising IBAN functions...
 ```
 
 Validation Functions
 --------------------
 
 ```php
-# Verify an IBAN number.
-#  An optional second argument specifies $machine_format_only (default is false)
-#  If true, the function will not tolerate unclean inputs
-#   (eg. spaces, dashes, leading 'IBAN ' or 'IIBAN ', lower case)
-#  If false (default), input can be in either:
-#   - printed ('IIBAN xx xx xx...' or 'IBAN xx xx xx...'); or 
-#   - machine ('xxxxx')
-#  ... string formats.
-#  Returns true or false.
+// Verify an IBAN number.
+//  An optional second argument specifies $machine_format_only (default is false)
+//  If true, the function will not tolerate unclean inputs
+//   (eg. spaces, dashes, leading 'IBAN ' or 'IIBAN ', lower case)
+//  If false (default), input can be in either:
+//   - printed ('IIBAN xx xx xx...' or 'IBAN xx xx xx...'); or 
+//   - machine ('xxxxx')
+//  ... string formats.
+//  Returns true or false.
 if(!verify_iban($iban,$machine_format_only=false)) {
- # ...
+ // ...
 }
 
-# Check the checksum of an IBAN - code modified from Validate_Finance PEAR class
+// Check the checksum of an IBAN - code modified from Validate_Finance PEAR class
 if(!iban_verify_checksum($iban)) {
- # ...
+ // ...
 }
 
-# Suggest what the user really meant in the case of transcription errors
+// Suggest what the user really meant in the case of transcription errors
 $suggestions = iban_mistranscription_suggestions($bad_iban);
 if(count($suggestions) == 1) {
- print "You really meant " . $suggestions[0] . ", right?\n";
+ echo  "You really meant " . $suggestions[0] . ", right?\n";
 }
 
-# Find the correct checksum for an IBAN
+// Find the correct checksum for an IBAN
 $correct_checksum = iban_find_checksum($iban);
 
-# Set the correct checksum for an IBAN
+// Set the correct checksum for an IBAN
 $fixed_iban = iban_set_checksum($iban);
 
-# Verify the pre-IBAN era, BBAN-level national checksum for those countries that
-# have such a system and we have implemented.
-# (Returns '' if unimplemented, true or false)
+// Verify the pre-IBAN era, BBAN-level national checksum for those countries that
+// have such a system and we have implemented.
+// (Returns '' if unimplemented, true or false)
 $result = iban_verify_nationalchecksum($iban);
 if($result == '') {
- print "National checksum system does not exist or remains unimplemented for the country of IBAN '$iban'.\n";
+ echo  "National checksum system does not exist or remains unimplemented for the country of IBAN '$iban'.\n";
 }
 elseif($result == true) {
- print "IBAN '$iban' passes the national checksum algorithm for its country.\n";
+ echo  "IBAN '$iban' passes the national checksum algorithm for its country.\n";
 }
 else {
- print "IBAN '$iban' FAILS the national checksum algorithm for its country.\n";
+ echo  "IBAN '$iban' FAILS the national checksum algorithm for its country.\n";
 }
 
-# Set the pre-IBAN era, BBAN-level national checksum for those countries that
-# have such a system, where that system results in a dedicated checksum
-# substring, and that we have implemented.
-# (Returns '' if unimplemented, or the corrected string)
-# (NOTE: On success, the function also subsequently recalculates the IBAN-level checksum)
+// Set the pre-IBAN era, BBAN-level national checksum for those countries that
+// have such a system, where that system results in a dedicated checksum
+// substring, and that we have implemented.
+// (Returns '' if unimplemented, or the corrected string)
+// (NOTE: On success, the function also subsequently recalculates the IBAN-level checksum)
 $national_checksum_algorithm_valid_iban = iban_set_nationalchecksum($iban);
 
-# Determine, but do not set, the pre-IBAN era, BBAN-level national checksum 
-# for those countries that have such a system, where that system results in
-# a dedicated checksum substring, and that we have implemented.
-# (Returns '' if unimplemented, or the expected national checksum substring)
+// Determine, but do not set, the pre-IBAN era, BBAN-level national checksum 
+// for those countries that have such a system, where that system results in
+// a dedicated checksum substring, and that we have implemented.
+// (Returns '' if unimplemented, or the expected national checksum substring)
 $expected_national_checksum = iban_find_nationalchecksum($iban);
 ```
 
@@ -1062,19 +1079,19 @@ Utility Functions
 -----------------
 
 ```php
-# Convert an IBAN to machine format.  To do this, we
-# remove IBAN from the start, if present, and remove
-# non basic roman letter / digit characters
+// Convert an IBAN to machine format.  To do this, we
+// remove IBAN from the start, if present, and remove
+// non basic roman letter / digit characters
 $machine_iban = iban_to_machine_format($iban);
 
-# Convert an IBAN to human format.  To do this, we
-# add a space every four characters.
+// Convert an IBAN to human format.  To do this, we
+// add a space every four characters.
 $human_iban = iban_to_human_format($iban);
 
-# Convert an IBAN to obfuscated format for relative
-# identification. To do this, we replace all but the
-# leading country code and final four characters with
-# asterisks.
+// Convert an IBAN to obfuscated format for relative
+// identification. To do this, we replace all but the
+// leading country code and final four characters with
+// asterisks.
 $obfuscated_iban = iban_to_obfuscated_format($iban);
 ```
 
@@ -1082,137 +1099,138 @@ $obfuscated_iban = iban_to_obfuscated_format($iban);
 IBAN Country-Level Functions
 ----------------------------
 ```php
-# Get the name of an IBAN country
+// Get the name of an IBAN country
 $country_name = iban_country_get_country_name($iban_country);
 
-# Get the domestic example for an IBAN country
+// Get the domestic example for an IBAN country
 $country_domestic_example = iban_country_get_domestic_example($iban_country);
 
-# Get the BBAN example for an IBAN country
+// Get the BBAN example for an IBAN country
 $country_bban_example = iban_country_get_bban_example($iban_country);
 
-# Get the BBAN format (in SWIFT format) for an IBAN country
+// Get the BBAN format (in SWIFT format) for an IBAN country
 $country_bban_format_as_swift = iban_country_get_bban_format_swift($iban_country);
 
-# Get the BBAN format (as a regular expression) for an IBAN country
+// Get the BBAN format (as a regular expression) for an IBAN country
 $country_bban_format_as_regex = iban_country_get_bban_format_regex($iban_country);
 
-# Get the BBAN length for an IBAN country
+// Get the BBAN length for an IBAN country
 $country_bban_length = iban_country_get_bban_length($iban_country);
 
-# Get the IBAN example for an IBAN country
+// Get the IBAN example for an IBAN country
 $country_iban_example = iban_country_get_iban_example($iban_country);
 
-# Get the IBAN length for an IBAN country
+// Get the IBAN length for an IBAN country
 $country_iban_length = iban_country_get_iban_length($iban_country);
 
-# Get the IBAN format (in SWIFT format) for an IBAN country
+// Get the IBAN format (in SWIFT format) for an IBAN country
 $country_iban_format_as_swift = iban_country_get_iban_format_swift ($iban_country);
 
-# Get the IBAN format (as a regular expression) for an IBAN country
+// Get the IBAN format (as a regular expression) for an IBAN country
 $country_iban_format_as_regex = iban_country_get_iban_format_regex($iban_country);
 
-# Determine whether an IBAN country is a member of SEPA (Single Euro Payments Area)
+// Determine whether an IBAN country is a member of SEPA (Single Euro Payments Area)
 if(!iban_country_is_sepa($iban_country)) {
- # ... do something xenophobic ...
+ // ... do something xenophobic ...
 }
 
-# Get the bank ID start offset for an IBAN country
+// Get the bank ID start offset for an IBAN country
 $country_bankid_start_offset = iban_country_get_bankid_start_offset($iban_country);
 
-# Get the bank ID stop offset for an IBAN country
+// Get the bank ID stop offset for an IBAN country
 $country_bankid_stop_offset = iban_country_get_bankid_stop_offset($iban_country);
 
-# Get the branch ID start offset for an IBAN country
+// Get the branch ID start offset for an IBAN country
 $country_branchid_start_offset = iban_country_get_branchid_start_offset($iban_country);
 
-# Get the branch ID stop offset for an IBAN country
+// Get the branch ID stop offset for an IBAN country
 $country_branchid_stop_offset = iban_country_get_branchid_stop_offset($iban_country);
 
-# Get the registry edition for an IBAN country (note: IIBAN country 'AA' returns 'N/A')
+// Get the registry edition for an IBAN country (note: IIBAN country 'AA' returns 'N/A')
 $country_registry_edition = iban_country_get_registry_edition($iban_country);
 
-# Determine whether an IBAN country is an official, SWIFT issued country record
+// Determine whether an IBAN country is an official, SWIFT issued country record
 if(!iban_country_get_country_swift_official($iban_country)) {
- # ... do something against decentralization ...
+ // ... do something against decentralization ...
 }
 
-# Get the IANA code for an IBAN country
+// Get the IANA code for an IBAN country
 $country_iana = iban_country_get_iana($iban_country);
 
-# Get the ISO3166-1 alpha-2 code for an IBAN country
+// Get the ISO3166-1 alpha-2 code for an IBAN country
 $country_iso3166 = iban_country_get_iso3166($iban_country);
 
-# Get the parent registrar IBAN country of an IBAN country
-# (Returns '' in the normal case that the country is independently registered)
+// Get the parent registrar IBAN country of an IBAN country
+// (Returns '' in the normal case that the country is independently registered)
 $registrar_country = iban_country_get_parent_registrar($iban_country);
 if($registrar_country=='') {
- print "The mighty nation of '$iban_country' stands strong and proud...\n";
- print " ... with its own heirarchy of bureaucrats!\n";
+ echo  "The mighty nation of '$iban_country' stands strong and proud...\n";
+ echo  " ... with its own heirarchy of bureaucrats!\n";
 }
 else {
- print "It has been foretold that the downtrodden natives of '$iban_country' will one day\n";
- print "rise up and throw off the shackles of the evil '$registrar_country' oppressors!\n";
+ echo  "It has been foretold that the downtrodden natives of '$iban_country' will one day\n";
+ echo  "rise up and throw off the shackles of the evil '$registrar_country' oppressors!\n";
 }
 
-# Get the official currency of an IBAN country as an ISO4217 alpha code
-# (Returns '' in the Internet (IIBAN) case, ie. no official currency)
+// Get the official currency of an IBAN country as an ISO4217 alpha code
+// (Returns '' in the Internet (IIBAN) case, ie. no official currency)
 $official_currency = iban_country_get_currency_iso4217($iban_country);
 if($official_currency == '') {
- print "There is no official currency for the IBAN country '$iban_country'.\n";
+ echo  "There is no official currency for the IBAN country '$iban_country'.\n";
 }
 
-# Get the URL of an IBAN country's central bank
-# (Note: Returns '' if there is no central bank. Also, note that
-#        sometimes multiple countries share one central bank)
+// Get the URL of an IBAN country's central bank
+// (Note: Returns '' if there is no central bank. Also, note that
+//        sometimes multiple countries share one central bank)
 $central_bank_url = iban_country_get_central_bank_url($iban_country);
 
-# Get the name of an IBAN country's central bank
-# (Note: Returns '' if there is no central bank. Also, note that
-#        sometimes multiple countries share one central bank)
+// Get the name of an IBAN country's central bank
+// (Note: Returns '' if there is no central bank. Also, note that
+//        sometimes multiple countries share one central bank)
 $central_bank_name = iban_country_get_central_bank_name($iban_country);
 
-# Get the membership type of the country
-# There are four types of memberships:
-# * EU-Member States (eu_member)
-# * EFTA-Member States (efta_member)
-# * Other Memberships, which have monetary agreements with the EU (other_member)
-# * Non-Members, which don't belong to the EU or have agreements (non_member)
+// Get the membership type of the country
+// There are four types of memberships:
+// * EU-Member States (eu_member)
+// * EFTA-Member States (efta_member)
+// * Other Memberships, which have monetary agreements with the EU (other_member)
+// * Non-Members, which don't belong to the EU or have agreements (non_member)
 $country_membership = iban_country_get_membership($iban_country);
 
-# Get if the country is a eu member state
-# (Note: Returns true, if member state; false otherwise)
+// Get if the country is a eu member state
+// (Note: Returns true, if member state; false otherwise)
 $country_membership = iban_country_get_is_eu_member($iban_country);
 ```
 
 
 Parsing Functions
 -----------------
+
 ```php
-# Get an array of all the parts from an IBAN
+// Get an array of all the parts from an IBAN
 $iban_parts = iban_get_parts($iban);
 
-# Get the country part from an IBAN
+// Get the country part from an IBAN
 $iban_country = iban_get_country_part($iban);
 
-# Get the BBAN part from an IBAN
+// Get the BBAN part from an IBAN
 $bban = iban_get_bban_part($iban);
 
-# Get the Bank ID (institution code) from an IBAN
+// Get the Bank ID (institution code) from an IBAN
 $bank = iban_get_bank_part($iban);
 
-# Get the Branch ID (sort code) from an IBAN
-#  (NOTE: only available for some countries)
+// Get the Branch ID (sort code) from an IBAN
+//  (NOTE: only available for some countries)
 $sortcode = iban_get_branch_part($iban);
 
-# Get the (branch-local) account ID from an IBAN
-#  (NOTE: only available for some countries)
+// Get the (branch-local) account ID from an IBAN
+//  (NOTE: only available for some countries)
 $account = iban_get_account_part($iban);
 
-# Get the checksum part from an IBAN
+// Get the checksum part from an IBAN
 $checksum = iban_get_checksum_part($iban);
 
-# Get the national checksum part from an IBAN (if it exists)
+// Get the national checksum part from an IBAN (if it exists)
 $checksum = iban_get_nationalchecksum_part($iban);
 ```
 
@@ -1220,74 +1238,77 @@ $checksum = iban_get_nationalchecksum_part($iban);
 Documentation (Object Oriented Wrapper/Discouraged)
 ===================================================
 
-OO use is discouraged as there is a present-day trend to overuse the model.  However, if you prefer OO PHP then by all means use the object oriented wrapper, described below.
+OO use is discouraged as there is a present-day trend to overuse the model.  
+However, if you prefer OO PHP then by all means use the object oriented wrapper, described below.
+
 ```php
-require_once('oophp-iban.php');
-# ... your code utilising object oriented PHP IBAN functions...
+require_once __DIR__ . '/oophp-iban.php';
+// ... your code utilising object oriented PHP IBAN functions...
 ```
 
 Validation Functions
 --------------------
+
 ```php
-# Example instantiation
+// Example instantiation
 $iban = 'AZ12345678901234'
 $myIban = new IBAN($iban);
 
-# Verify an IBAN number.
-#  Tolerates spaces, prefixes "IBAN ...", dashes, lowercase input, etc.
-#  Returns true or false.
+// Verify an IBAN number.
+//  Tolerates spaces, prefixes "IBAN ...", dashes, lowercase input, etc.
+//  Returns true or false.
 if(!$myIban->Verify()) {
- # ...
+ // ...
 }
-# Verify an IBAN number in machine format only.
-#  Does not tolerate lowercase input, separators, whitespace or prefixes.
-#  Returns true or false.
+// Verify an IBAN number in machine format only.
+//  Does not tolerate lowercase input, separators, whitespace or prefixes.
+//  Returns true or false.
 if(!$myIban->VerifyMachineFormatOnly()) {
- # ...
+ // ...
 }
 
-# Check the checksum of an IBAN - code modified from Validate_Finance PEAR class
+// Check the checksum of an IBAN - code modified from Validate_Finance PEAR class
 if(!$myIban->VerifyChecksum()) {
- # ...
+ // ...
 }
 
-# Suggest what the user really meant in the case of mistranscription errors
+// Suggest what the user really meant in the case of mistranscription errors
 $suggestions = $badIban->MistranscriptionSuggestions();
 if(count($suggestions)==1) {
- print "You really meant " . $suggestions[0] . ", right?\n";
+ echo  "You really meant " . $suggestions[0] . ", right?\n";
 }
 
-# Find the correct checksum for an IBAN
+// Find the correct checksum for an IBAN
 $correct_checksum = $myIban->FindChecksum();
 
-# Set the correct checksum for an IBAN
+// Set the correct checksum for an IBAN
 $fixed_iban = $myIban->SetChecksum()
 
-# Verify the pre-IBAN era, BBAN-level national checksum for those countries that
-# have such a system and we have implemented.
-# (Returns '' if unimplemented, true or false)
+// Verify the pre-IBAN era, BBAN-level national checksum for those countries that
+// have such a system and we have implemented.
+// (Returns '' if unimplemented, true or false)
 $result = $myIban->VerifyNationalChecksum();
 if($result == '') {
- print "National checksum system does not exist or remains unimplemented for this IBAN's country.\n";
+ echo  "National checksum system does not exist or remains unimplemented for this IBAN's country.\n";
 }
 elseif($result == true) {
- print "IBAN passes the national checksum algorithm for its country.\n";
+ echo  "IBAN passes the national checksum algorithm for its country.\n";
 }
 else {
- print "IBAN FAILS the national checksum algorithm for its country.\n";
+ echo  "IBAN FAILS the national checksum algorithm for its country.\n";
 }
 
-# Set the pre-IBAN era, BBAN-level national checksum for those countries that
-# have such a system, where that system results in a dedicated checksum
-# substring, and that we have implemented.
-# (Returns '' if unimplemented, or the corrected string)
-# (NOTE: On success, the function also subsequently recalculates the IBAN-level checksum)
+// Set the pre-IBAN era, BBAN-level national checksum for those countries that
+// have such a system, where that system results in a dedicated checksum
+// substring, and that we have implemented.
+// (Returns '' if unimplemented, or the corrected string)
+// (NOTE: On success, the function also subsequently recalculates the IBAN-level checksum)
 $myIban->SetNationalChecksum();
 
-# Determine, but do not set, the pre-IBAN era, BBAN-level national checksum
-# for those countries that have such a system, where that system results in
-# a dedicated checksum substring, and that we have implemented.
-# (Returns '' if unimplemented, or the expected national checksum substring)
+// Determine, but do not set, the pre-IBAN era, BBAN-level national checksum
+// for those countries that have such a system, where that system results in
+// a dedicated checksum substring, and that we have implemented.
+// (Returns '' if unimplemented, or the expected national checksum substring)
 $national_checksum = $myIban->FindNationalChecksum();
 ```
 
@@ -1295,19 +1316,19 @@ Utility Functions
 -----------------
 
 ```php
-# Convert an IBAN to machine format.  To do this, we
-# remove IBAN from the start, if present, and remove
-# non basic roman letter / digit characters
+// Convert an IBAN to machine format.  To do this, we
+// remove IBAN from the start, if present, and remove
+// non basic roman letter / digit characters
 $machine_iban = $myIban->MachineFormat();
 
-# Convert an IBAN to human format.  To do this, we
-# add a space every four characters.
+// Convert an IBAN to human format.  To do this, we
+// add a space every four characters.
 $human_iban = $myIban->HumanFormat();
 
-# Convert an IBAN to obfuscated format for relative
-# identification. To do this, we replace all but the
-# leading country code and final four characters with
-# asterisks.
+// Convert an IBAN to obfuscated format for relative
+// identification. To do this, we replace all but the
+// leading country code and final four characters with
+// asterisks.
 $obfsucated_iban = $myIban->ObfuscatedFormat();
 ```
 
@@ -1315,112 +1336,112 @@ IBAN Country-Level Functions
 ----------------------------
 
 ```php
-# To list countries, use the IBAN Class...
+// To list countries, use the IBAN Class...
 $myIban->Countries();
 
-# ... everything else is in the IBANCountry class.
+// ... everything else is in the IBANCountry class.
 
-# Example instantiation
+// Example instantiation
 $countrycode = 'DE';
 $myCountry = new IBANCountry($countrycode);
 
-# Get the country code of an IBAN country
+// Get the country code of an IBAN country
 $country_code = $myCountry->Code();
 
-# Get the name of an IBAN country
+// Get the name of an IBAN country
 $country_name = $myCountry->Name();
 
-# Get the domestic example for an IBAN country
+// Get the domestic example for an IBAN country
 $country_domestic_example = $myCountry->DomesticExample();
 
-# Get the BBAN example for an IBAN country
+// Get the BBAN example for an IBAN country
 $country_bban_example = $myCountry->BBANExample();
 
-# Get the BBAN format (in SWIFT format) for an IBAN country
+// Get the BBAN format (in SWIFT format) for an IBAN country
 $country_bban_format_as_swift = $myCountry->BBANFormatSWIFT();
 
-# Get the BBAN format (as a regular expression) for an IBAN country
+// Get the BBAN format (as a regular expression) for an IBAN country
 $country_bban_format_as_regex = $myCountry->BBANFormatRegex();
 
-# Get the BBAN length for an IBAN country
+// Get the BBAN length for an IBAN country
 $country_bban_length = $myCountry->BBANLength();
 
-# Get the IBAN example for an IBAN country
+// Get the IBAN example for an IBAN country
 $country_iban_example = $myCountry->IBANExample();
 
-# Get the IBAN length for an IBAN country
+// Get the IBAN length for an IBAN country
 $country_iban_length = $myCountry->IBANLength();
 
-# Get the IBAN format (in SWIFT format) for an IBAN country
+// Get the IBAN format (in SWIFT format) for an IBAN country
 $country_iban_format_as_swift = $myCountry->IBANFormatSWIFT();
 
-# Get the IBAN format (as a regular expression) for an IBAN country
+// Get the IBAN format (as a regular expression) for an IBAN country
 $country_iban_format_as_regex = $myCountry->IBANFormatRegex();
 
-# Determine whether an IBAN country is a member of SEPA (Single Euro Payments Area)
+// Determine whether an IBAN country is a member of SEPA (Single Euro Payments Area)
 if(!$myCountry->IsSEPA()) {
- # ... do something xenophobic ...
+ // ... do something xenophobic ...
 }
 
-# Get the bank ID start offset for an IBAN country
+// Get the bank ID start offset for an IBAN country
 $country_bankid_start_offset = $myCountry->BankIDStartOffset();
 
-# Get the bank ID stop offset for an IBAN country
+// Get the bank ID stop offset for an IBAN country
 $country_bankid_stop_offset = $myCountry->BankIDStopOffset();
 
-# Get the branch ID start offset for an IBAN country
+// Get the branch ID start offset for an IBAN country
 $country_branchid_start_offset = $myCountry->BranchIDStartOffset();
 
-# Get the branch ID stop offset for an IBAN country
+// Get the branch ID stop offset for an IBAN country
 $country_branchid_stop_offset = $myCountry->BranchIDStopOffset();
 
-# Get the national checksum start offset for an IBAN country
+// Get the national checksum start offset for an IBAN country
 $country_nationalchecksum_start_offset = $myCountry->NationalChecksumStartOffset();
 
-# Get the national checksum stop offset for an IBAN country
+// Get the national checksum stop offset for an IBAN country
 $country_nationalchecksum_stop_offset = $myCountry->NationalChecksumStopOffset();
 
-# Get the registry edition for an IBAN country (note: IIBAN country 'AA' returns 'N/A')
+// Get the registry edition for an IBAN country (note: IIBAN country 'AA' returns 'N/A')
 $country_registry_edition = $myCountry->RegistryEdition();
 
-# Determine whether an IBAN country is an official, SWIFT issued country record
+// Determine whether an IBAN country is an official, SWIFT issued country record
 if(!$myCountry->SWIFTOfficial()) {
- # ... do something against decentralization ...
+ // ... do something against decentralization ...
 }
 
-# Get the IANA code for an IBAN country
+// Get the IANA code for an IBAN country
 $country_iana = $myCountry->IANA();
 
-# Get the ISO3166-1 alpha-2 code for an IBAN country
+// Get the ISO3166-1 alpha-2 code for an IBAN country
 $country_iso3166 = $myCountry->ISO3166();
 
-# Get the parent registrar IBAN country of an IBAN country
-# (Returns '' in the normal case that the country is independently registered)
+// Get the parent registrar IBAN country of an IBAN country
+// (Returns '' in the normal case that the country is independently registered)
 $registrar_country = $myCountry->ParentRegistrar();
 if($registrar_country=='') {
- print "The mighty nation of '$iban_country' stands strong and proud...\n";
- print " ... with its own heirarchy of bureaucrats!\n";
+ echo "The mighty nation of '$iban_country' stands strong and proud...\n";
+ echo " ... with its own heirarchy of bureaucrats!\n";
 }
 else {
- print "It has been foretold that the downtrodden natives of '$iban_country' will one day\n";
- print "rise up and throw off the shackles of the evil '$registrar_country' oppressors!\n";
+ echo  "It has been foretold that the downtrodden natives of '$iban_country' will one day\n";
+ echo  "rise up and throw off the shackles of the evil '$registrar_country' oppressors!\n";
 }
 
-# Get the official currency of an IBAN country as an ISO4217 alpha code
-# (Returns '' in the Internet (IIBAN) case, ie. no official currency)
+// Get the official currency of an IBAN country as an ISO4217 alpha code
+// (Returns '' in the Internet (IIBAN) case, ie. no official currency)
 $official_currency = $myCountry->CurrencyISO4217();
 if($official_currency == '') {
- print "There is no official currency for the IBAN country '$iban_country'.\n";
+ echo  "There is no official currency for the IBAN country '$iban_country'.\n";
 }
 
-# Get the URL of an IBAN country's central bank
-# (Note: Returns '' if there is no central bank. Also, note that
-#        sometimes multiple countries share one central bank)
+// Get the URL of an IBAN country's central bank
+// (Note: Returns '' if there is no central bank. Also, note that
+//        sometimes multiple countries share one central bank)
 $central_bank_url = $myCountry->CentralBankURL();
 
-# Get the name of an IBAN country's central bank
-# (Note: Returns '' if there is no central bank. Also, note that
-#        sometimes multiple countries share one central bank)
+// Get the name of an IBAN country's central bank
+// (Note: Returns '' if there is no central bank. Also, note that
+//        sometimes multiple countries share one central bank)
 $central_bank_name = $myCountry->CentralBankName();
 ```
 
@@ -1429,31 +1450,31 @@ Parsing Functions
 -----------------
 
 ```php
-# Get an array of all the parts from an IBAN
+// Get an array of all the parts from an IBAN
 $iban_parts = $myIban->Parts();
 
-# Get the country part from an IBAN
+// Get the country part from an IBAN
 $iban_country = $myIban->Country();
 
-# Get the checksum part from an IBAN
+// Get the checksum part from an IBAN
 $checksum = $myIban->Checksum();
 
-# Get the BBAN part from an IBAN
+// Get the BBAN part from an IBAN
 $bban = $myIban->BBAN();
 
-# Get the Bank ID (institution code) from an IBAN
+// Get the Bank ID (institution code) from an IBAN
 $bank = $myIban->Bank();
 
-# Get the Branch ID (sort code) from an IBAN
-#  (NOTE: only available for some countries)
+// Get the Branch ID (sort code) from an IBAN
+//  (NOTE: only available for some countries)
 $sortcode = $myIban->Branch();
 
-# Get the (branch-local) account ID from an IBAN
-#  (NOTE: only available for some countries)
+// Get the (branch-local) account ID from an IBAN
+//  (NOTE: only available for some countries)
 $account = $myIban->Account();
 
-# Get the national checksum part from an IBAN
-#  (NOTE: only available for some countries)
+// Get the national checksum part from an IBAN
+//  (NOTE: only available for some countries)
 $checksum = $myIban->NationalChecksum();
 ```
 
